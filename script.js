@@ -101,12 +101,14 @@ noteForm.addEventListener('submit', event => {
 
   if (!text) {
     errorMessage.textContent = 'Please type a note first.';
+    errorMessage.classList.add('has-error');
     noteInput.focus();
     return;
   }
 
   if (text.length > 200) {
     errorMessage.textContent = 'Notes must be 200 characters or fewer.';
+    errorMessage.classList.add('has-error');
     noteInput.focus();
     return;
   }
@@ -122,6 +124,7 @@ noteForm.addEventListener('submit', event => {
   saveNotes();
   noteForm.reset();
   errorMessage.textContent = '';
+  errorMessage.classList.remove('has-error');
   render();
   noteInput.focus();
 });
