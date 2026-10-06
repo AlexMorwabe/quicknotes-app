@@ -6,6 +6,8 @@ const notesList = document.querySelector('#notes-list');
 const noteCount = document.querySelector('#note-count');
 const errorMessage = document.querySelector('#error-message');
 
+const STORAGE_KEY = 'quicknotes-notes';
+
 let notes = [];
 
 function render() {
@@ -75,11 +77,11 @@ function updateCount() {
 }
 
 function saveNotes() {
-  localStorage.setItem('quicknotes-notes', JSON.stringify(notes));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
 }
 
 function loadNotes() {
-  const savedNotes = localStorage.getItem('quicknotes-notes');
+  const savedNotes = localStorage.getItem(STORAGE_KEY);
 
   if (!savedNotes) {
     notes = [];
@@ -91,7 +93,7 @@ function loadNotes() {
     notes = Array.isArray(parsedNotes) ? parsedNotes : [];
   } catch (error) {
     notes = [];
-    localStorage.removeItem('quicknotes-notes');
+    localStorage.removeItem(STORAGE_KEY);
   }
 }
 
